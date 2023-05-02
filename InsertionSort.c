@@ -11,9 +11,9 @@ void InicializaRand_v(int v[], int n){
 void InsertionSort(int v[], int n){
     int i, j, x;
 
-    for (j=1;j<n;j++){
+    for(j=1;j<n;j++){
         x = v[j];
-        for (i=j-1;i>=0&&v[i]>x;i--){
+        for(i=j-1;i>=0&&v[i]>x;i--){
             v[i+1] = v[i];
         }
     v[i+1] = x;

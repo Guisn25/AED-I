@@ -8,6 +8,8 @@ void InicializaRand_v(int v[], int n){
     }
 }
 
+//Ajeitar tudo
+
 void InsereEmHeap (int m, int v[]) {
     int t;
     int f = m+1;

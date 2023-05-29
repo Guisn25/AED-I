@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Srota{
+    int n;
+    struct Srota *outra;
+}Trota;
+
+void Inicializarotas(Trota *rotas, int N){
+    for(int i=0;i<N;i++){
+        rotas[i].n = 0;
+        rotas[i].outra = NULL;
+    }
+}
+
+void InsereRota(Trota rota, int B){
+    Trota *aux = rota->outra;
+    
+    if(aux != NULL){
+        while(aux->outra != NULL){
+            aux = aux->outra;
+        }
+    }    
+    aux->outra = (Trota *) malloc(sizeof(Trota));
+    
+    aux->outra.n = 
+    
+    
+}
+
+int main(){
+    int  N, M, A, B;
+    Trota *rotas;
+
+    scanf("%i %i", &N, &M);
+
+    rotas = (Trota *) malloc(N*sizeof(Trota));
+    InicializaRotas(rotas, N);
+    
+    for(int i=0;i<M;i++){
+        scanf("%i %i", &A, &B);
+        InsereRota(rotas[A-1], B);
+        
+    }
+    
+
+
+    return 0;
+}

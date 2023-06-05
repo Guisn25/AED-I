@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include <stdlib.h>
+ 
+typedef struct no{
+    int n;
+    struct no *esq, *dir; 
+}Tno;
+
+Tno *CriaNo(Tno *novo){
+    novo = (Tno *) calloc(1, sizeof(Tno));
+    novo->esq = NULL;
+    novo->dir = NULL;    
+    
+    return novo;
+}
+
+void InsereArvore(Tno *raiz){
+    int x;
+
+    scanf("%i", &x);    
+
+    if(raiz == NULL){
+        raiz = CriaNo(raiz);
+        raiz->n = x;
+        printf("%i", raiz->n);
+        return;
+    }
+   
+    Tno *aux = raiz;
+    while(aux->esq != NULL && aux->n>x){
+        aux = aux->esq;
+    }
+    while(aux->dir != NULL && aux->n<x){
+        aux = aux->dir;
+    }
+    
+    if(aux->n>x){
+        aux->esq = CriaNo(aux->esq);
+        aux->esq->n = x;
+    }else{
+        aux->dir = CriaNo(aux->dir);
+        aux->dir->n = x;
+    }
+}
+
+void printPre(Tno *raiz){
+    printf("Pre.:");
+    
+    if(raiz != NULL){
+        printf(" %i", raiz->n);
+        printPre(raiz->esq);
+        printPre(raiz->dir);
+    }
+    return;
+}
+
+void printIn(Tno *raiz){
+    printf("In..:");
+    
+    if(raiz != NULL){
+        printIn(raiz->esq);
+        printf(" %i", raiz->n);
+        printIn(raiz->dir);
+    }
+    return;
+}
+
+void printPost(Tno *raiz){
+    printf("Post.:");
+    
+    if(raiz != NULL){
+        printPost(raiz->esq);
+        printPost(raiz->dir);
+        printf(" %i", raiz->n);
+    }
+    return;
+}
+
+void freeArvore(Tno *raiz){
+    while(raiz != NULL){
+        freeArvore(raiz->esq);
+        freeArvore(raiz->dir);
+        free(raiz);
+    }
+    return;
+}
+
+
+int main() {
+    int C, N;
+    Tno *raiz = NULL;
+    
+    scanf("%i", &C);
+    
+    for(int i=1;i<=C;i++){
+        scanf("%i", &N);
+        
+        for(int j=0;j<N;j++){
+            InsereArvore(raiz);
+        }
+        
+        printf("Case %i:\n", i);
+        printPre(raiz);
+        printf("\n");
+        printIn(raiz);
+        printf("\n");
+        printPost(raiz);
+        printf("\n");
+    
+        freeArvore(raiz);
+        printf("\n");
+    }
+ 
+    return 0;
+}

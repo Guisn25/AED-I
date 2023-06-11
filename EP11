@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Shash{
+    int n;
+    struct Shash *prox;
+}Thash;
+
+void CriaHash(Thash* **hash, int M){
+    *hash = (Thash **) calloc(M, sizeof(Thash *));
+    for(int i=0;i<M;i++){
+        (*hash)[i] = NULL;
+    }
+}
+
+Thash* InsereValor(int x){
+    Thash *novo;
+
+    novo = malloc(sizeof(Thash));
+    novo->n = x;
+    novo->prox = NULL;
+
+    return novo;
+}
+
+void InsereHash(Thash *hash[], int M, int C){
+    int x, hkey;
+    Thash *aux;
+
+    for(int i=0;i<C;i++){
+        scanf("%i", &x);
+        hkey = x%M;
+
+        if(hash[hkey] != NULL){
+            aux = hash[hkey];
+            while(aux->prox != NULL){
+                aux = aux->prox;
+            }
+            aux->prox = InsereValor(x);
+        }else{
+            hash[hkey] = InsereValor(x);
+        }
+    }
+}
+
+void printHash(Thash *hash[], int M){
+    Thash* aux;
+
+    for(int i=0;i<M;i++){
+        printf("%i -> ", i);
+
+        if(hash[i] != NULL){
+            printf("%i -> ", hash[i]->n);
+            aux = hash[i]->prox;
+            while(aux != NULL){
+                printf("%i -> ", aux->n);
+                aux = aux->prox;
+            }
+        }
+        printf("\\\n");
+    }
+}
+
+void freeHash(Thash *hash[], int M){
+    Thash *aux, *auxp;
+    for(int i=0;i<M;i++){
+        aux = hash[i];
+        while(aux!=NULL){
+            auxp = aux->prox;
+            free(aux);
+            aux = auxp;
+        }
+    }
+    free(hash);
+}
+
+int main(){
+    int N, M, C;
+    Thash **hash;
+
+    scanf("%i", &N);
+
+    for(int i=0;i<N;i++){
+        scanf("%i %i", &M, &C);
+        CriaHash(&hash, M);
+        InsereHash(hash, M, C);
+        printHash(hash, M);
+        freeHash(hash, M);
+        if(i!=N-1){
+            printf("\n");
+        }
+    }
+
+    return 0;
+}

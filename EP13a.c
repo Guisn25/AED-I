@@ -16,15 +16,15 @@ void IniciaHash(Thash* **hash){
 }
 
 void SeparaPalavras(char linha[]){
-    //percorrer linha até encontrar não letra e substituir por '\0'
+    //percorrer linha atÃ© encontrar nÃ£o letra e substituir por '\0'
 }
 
 void InsereHash(Thash **hash, char linha[]){
-    //inserir cada palavras separada com hash de: hashk = hashk + (int)string[i]
+    //inserir cada palavras separada com hash de: hashk = hashk + (int)string[i] onde i avanÃ§a com colisÃ£o
 }
 
 void printHash(Thash **hash){
-    //printar Hash linha a linha, pois já estará em ordem alfabética
+    //printar Hash linha a linha, pois jÃ¡ estarÃ¡ em ordem alfabÃ©tica
 }
 
 int main(){
@@ -34,7 +34,7 @@ int main(){
 
     fgets(linha, 200, stdin);
     do{
-        //fazer tolower dentro de outra função pra ficar bonitinho
+        //fazer tolower dentro de outra funÃ§Ã£o pra ficar bonitinho
         tolower(linha);
 
         IniciaHash(&hash);
